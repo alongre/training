@@ -15,8 +15,14 @@ var scores = [0,0];
 var roundScore = 0;
 var activePlayer = 0;
 
-document.getElementById('score-0').textContent = 0;
-document.getElementById('score-1').textContent = 0;
+const playersScoreDOM = [];
+
+playersScoreDOM[0] = document.getElementById('score-0');
+playersScoreDOM[1] = document.getElementById('score-1');
+
+playersScoreDOM[0].textContent = 0;
+playersScoreDOM[1].textContent = 0;
+
 const playersDOM = [];
 playersDOM[0] = document.getElementById('current-0');
 playersDOM[1] = document.getElementById('current-1');
@@ -43,5 +49,14 @@ document.querySelector('.btn-roll').addEventListener('click', () => {
     const dice = Math.floor(Math.random() * 6 + 1);
     diceObject.src = 'dice-' + dice + '.png'; 
     dice > 1 ? addScore(dice) : changePlayer();
-   
+})
+
+document.querySelector('.btn-hold').addEventListener('click', () => {
+    const playerScore = Number(playersScoreDOM[activePlayer].textContent);
+    const currentScore = Number(playersDOM[activePlayer].textContent);
+    if (playerScore + currentScore >= 100) {
+
+    }
+    playersScoreDOM[activePlayer].textContent = playerScore + currentScore;
+    changePlayer();
 })
